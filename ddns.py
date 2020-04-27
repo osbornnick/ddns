@@ -1,8 +1,7 @@
 import requests
 from datetime import datetime
 import configparser
-# TODO: take config details out of code
-# add logging capabilites
+# TODO:
 # put on a cronjob
 
 
