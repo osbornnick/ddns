@@ -1,3 +1,4 @@
 *.ini
 *.ipynb
 *.log
+__pycache__
