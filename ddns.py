@@ -1,32 +1,28 @@
 import requests
 from datetime import datetime
 import configparser
-import os
 # TODO:
 # put on a cronjob
 
 
 def main():
-    cwd = os.getcwd()
-    file = os.path.join(cwd, 'run.log') 
-    log = open(file, 'a')
     starttime = datetime.now()
-    log.write(f'run started {starttime.strftime("%c")}\n')
+    print(f'run started {starttime.strftime("%c")}\n')
     current_ip = get_current_ip()
-    log.write(f'retrieved current ip: {current_ip}\n')
+    print(f'retrieved current ip: {current_ip}\n')
     response = api_dns_call('get')
     listed_ip = response.json()['domain_record']['data']
-    log.write(f'retrieved listed ip: {listed_ip}\n')
+    print(f'retrieved listed ip: {listed_ip}\n')
     if current_ip != listed_ip:
-        log.write('DNS needs to be updated, updating\n')
+        print('DNS needs to be updated, updating\n')
         api_dns_call('put', current_ip)
-        log.write(f'DNS updated to {current_ip}\n')
+        print(f'DNS updated to {current_ip}\n')
     else:
-        log.write('current ip and listed ip match\n')
+        print('current ip and listed ip match\n')
     finishtime = datetime.now()
     runtime = finishtime - starttime
     secs = runtime.total_seconds()
-    log.write(f'run finished at {finishtime}, {secs} seconds runtime \n\n')
+    print(f'run finished at {finishtime}, {secs} seconds runtime \n\n')
 
 
 def get_current_ip():
