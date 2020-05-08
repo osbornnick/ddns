@@ -7,22 +7,22 @@ import configparser
 
 def main():
     starttime = datetime.now()
-    print(f'run started {starttime.strftime("%c")}\n')
+    print(f'run started {starttime.strftime("%c")}')
     current_ip = get_current_ip()
-    print(f'retrieved current ip: {current_ip}\n')
+    print(f'retrieved current ip: {current_ip}')
     response = api_dns_call('get')
     listed_ip = response.json()['domain_record']['data']
-    print(f'retrieved listed ip: {listed_ip}\n')
+    print(f'retrieved listed ip: {listed_ip}')
     if current_ip != listed_ip:
-        print('DNS needs to be updated, updating\n')
+        print('DNS needs to be updated, updating')
         api_dns_call('put', current_ip)
-        print(f'DNS updated to {current_ip}\n')
+        print(f'DNS updated to {current_ip}')
     else:
-        print('current ip and listed ip match\n')
+        print('current ip and listed ip match')
     finishtime = datetime.now()
     runtime = finishtime - starttime
     secs = runtime.total_seconds()
-    print(f'run finished at {finishtime}, {secs} seconds runtime \n\n')
+    print(f'run finished at {finishtime}, {secs} seconds runtime')
 
 
 def get_current_ip():
