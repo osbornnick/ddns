@@ -1,12 +1,15 @@
 import requests
 from datetime import datetime
 import configparser
+import os
 # TODO:
 # put on a cronjob
 
 
 def main():
-    log = open('run.log', 'a')
+    cwd = os.getcwd()
+    file = os.path.join(cwd, 'run.log') 
+    log = open(file, 'a')
     starttime = datetime.now()
     log.write(f'run started {starttime.strftime("%c")}\n')
     current_ip = get_current_ip()
