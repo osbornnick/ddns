@@ -1,6 +1,6 @@
 import requests
 from datetime import datetime
-import configparseri
+import configparser
 import os
 # TODO:
 # put on a cronjob
