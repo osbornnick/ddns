@@ -1,6 +1,7 @@
 import requests
 from datetime import datetime
-import configparser
+import configparseri
+import os
 # TODO:
 # put on a cronjob
 
@@ -32,8 +33,9 @@ def get_current_ip():
 
 
 def api_dns_call(type, ip='0.0.0.0', id='91341316'):
+    configfile = os.path.abspath('api.ini')
     config = configparser.ConfigParser()
-    config.read('api.ini')
+    config.read(configfile)
     apiurl = config['api']['url']
     token = config['api']['token']
     headers = {"Authorization": f'Bearer {token}'}
